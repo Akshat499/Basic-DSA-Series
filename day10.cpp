@@ -35,3 +35,31 @@ public:
         return maxProfit;
     }
 };
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& arr) {
+        int n=arr.size();
+        int flag=0;
+        int idx=-1;
+        for (int i=n-2;i>=0;i--) {
+            if(arr[i]<arr[i+1]) {
+                idx=i;
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0) {
+            reverse(arr.begin(),arr.end());
+        }
+        if(flag==1) {
+        for (int i=n-1;i>idx;i--) {
+            if(arr[i]>arr[idx]) {
+                swap(arr[i],arr[idx]);
+                break;
+            }
+        }
+        reverse(arr.begin()+idx+1,arr.end());
+    }
+}
+};
